@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Stylish Registration Form</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #74ebd5, #9face6);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .form-container {
+      background-color: white;
+      padding: 30px 40px;
+      border-radius: 10px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      width: 350px;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 25px;
+      color: #333;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 16px;
+      transition: border-color 0.3s;
+    }
+
+    input:focus {
+      border-color: #6c63ff;
+      outline: none;
+    }
+
+    .error {
+      color: #e74c3c;
+      font-size: 13px;
+      margin-top: 5px;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background-color: #6c63ff;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #574b90;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="form-container">
+    <h2>Sign Up</h2>
+    <form id="registrationForm">
+      <div class="form-group">
+        <input type="text" id="name" placeholder="Name" />
+        <div class="error" id="nameError"></div>
+      </div>
+      <div class="form-group">
+        <input type="email" id="email" placeholder="Email" />
+        <div class="error" id="emailError"></div>
+      </div>
+      <div class="form-group">
+        <input type="password" id="password" placeholder="Password" />
+        <div class="error" id="passwordError"></div>
+      </div>
+      <div class="form-group">
+        <input type="password" id="confirmPassword" placeholder="Confirm Password" />
+        <div class="error" id="confirmPasswordError"></div>
+      </div>
+      <button type="submit">Register</button>
+    </form>
+  </div>
+
+  <script>
+    var form= document.getElementById('registrationForm')
+        form.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value.trim();
+      const confirmPassword = document.getElementById('confirmPassword').value.trim();
+          const nameError=document.getElementById('nameError')
+      nameError.textContent = "";
+      document.getElementById('emailError').textContent = "";
+      document.getElementById('passwordError').textContent = "";
+      document.getElementById('confirmPasswordError').textContent = "";
+
+      let hasError = true;
+
+      if (!name) {
+       nameError.textContent = "🤨 Name is required.";
+        hasError = false;
+      }
+      if (!email) {
+        document.getElementById('emailError').textContent = "🤨 Email is required.";
+        hasError = false;
+      }
+      if (!password) {
+        document.getElementById('passwordError').textContent = "🤨 Password is required.";
+        hasError = false;
+      }
+      if (!confirmPassword) {
+        document.getElementById('confirmPasswordError').textContent = "🤨 Confirm Password is required.";
+        hasError = false;
+      }
+      if (password && confirmPassword && password !== confirmPassword) {
+        document.getElementById('confirmPasswordError').textContent = "🚫 Passwords do not match.";
+        hasError = false;
+      }
+
+      if (hasError) {
+        alert("✅ Registration successful!");
+        // Further logic can go here
+      }
+    });
+  </script>
+
+
+</body>
+
+</html>
